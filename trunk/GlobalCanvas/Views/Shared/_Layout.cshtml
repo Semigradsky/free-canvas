@@ -51,6 +51,13 @@
 
         @Scripts.Render("~/scripts/canvas.js")
 
+        @Scripts.Render("~/scripts/underscore.js")
+        @Scripts.Render("~/scripts/backbone.js")
+        
+        @Scripts.Render("~/scripts/canvas/canvasModel.js")
+        @Scripts.Render("~/scripts/canvas/canvasView.js")
+
+
         @RenderSection("scripts", required: false)
     </body>
 </html>
