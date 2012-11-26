@@ -25,7 +25,8 @@ namespace GlobalCanvas
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/site.css",
-                "~/Content/canvas.css"
+                "~/Content/canvas.css",
+                "~/Content/jquery.colorpicker.css"
                 ));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

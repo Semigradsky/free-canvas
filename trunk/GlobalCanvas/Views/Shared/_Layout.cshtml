@@ -6,6 +6,7 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/jquery-ui.css")
         @Scripts.Render("~/bundles/modernizr")
     </head>
     <body>
@@ -45,18 +46,21 @@
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
         
         @Scripts.Render("~/scripts/jquery.signalR-1.0.0-alpha2.js")
         @Scripts.Render("~/signalr/hubs")
-
-        @Scripts.Render("~/scripts/canvas.js")
+        
+        @Scripts.Render("~/scripts/plugins/jquery.colorpicker.js")
+        @Scripts.Render("~/scripts/plugins/jquery.ui.colorpicker-en.js")
 
         @Scripts.Render("~/scripts/underscore.js")
         @Scripts.Render("~/scripts/backbone.js")
         
         @Scripts.Render("~/scripts/canvas/canvasModel.js")
         @Scripts.Render("~/scripts/canvas/canvasView.js")
-
+        
+        @Scripts.Render("~/scripts/canvas.js")
 
         @RenderSection("scripts", required: false)
     </body>

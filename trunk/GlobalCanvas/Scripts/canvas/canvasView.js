@@ -5,7 +5,8 @@
     mouseIsPressed: false,
     currentModel: new CanvasModel({}),
     connection: $.connection.canvas,
-        initialize: function () {
+    
+    initialize: function () {
         var view = this;
         $(view.el).off();
         _.bindAll(view);
@@ -15,7 +16,7 @@
         }
         $.connection.hub.start();
         $.extend(view.connection.client, {
-            drawLine: function (drawing) {
+            drawLine: function(drawing) {
                 view.canvasContext.beginPath();
                 view.canvasContext.lineWidth = 4;
                 view.canvasContext.lineJoin = 'round';
@@ -25,12 +26,24 @@
             },
         });
     },
+    
     events:
         {
             'mousedown #canvas': 'beginDrawing',
             'mouseup #canvas': 'endDrawing',
             'mousemove #canvas': 'performMouseMove'
         },
+    
+    // ToDo: Should be used
+    drawSimpleLine: function (context, drawingModel) {
+        context.beginPath();
+        context.lineWidth = drawingModel.lineWidth;
+        context.lineJoin = drawingModel.lineJoin;
+        context.moveTo(drawingModel.FromPoint.X, drawingModel.FromPoint.Y);
+        context.lineTo(drawingModel.ToPoint.X, drawingModel.ToPoint.Y);
+        context.stroke();
+    },
+    
     beginDrawing: function (e) {
         var view = this;
         view.mouseIsPressed = true;
@@ -39,10 +52,12 @@
             oldPositionY: e.clientY - view.canvas.offsetTop - 10
         });
     },
+    
     endDrawing: function () {
         var view = this;
         view.mouseIsPressed = false;
     },
+
     performMouseMove: function(e) {
         var view = this;
         if (view.mouseIsPressed) {
