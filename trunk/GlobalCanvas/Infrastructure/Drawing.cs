@@ -9,6 +9,8 @@
         public int LineWidth { get; set; }
 
         public string LineJoin { get; set; }
+
+        public string LineColor { get; set; }
     }
 
     public struct Point
