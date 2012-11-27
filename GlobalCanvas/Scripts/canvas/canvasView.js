@@ -16,13 +16,8 @@
         }
         $.connection.hub.start();
         $.extend(view.connection.client, {
-            drawLine: function(drawing) {
-                view.canvasContext.beginPath();
-                view.canvasContext.lineWidth = 4;
-                view.canvasContext.lineJoin = 'round';
-                view.canvasContext.moveTo(drawing.FromPoint.X, drawing.FromPoint.Y);
-                view.canvasContext.lineTo(drawing.ToPoint.X, drawing.ToPoint.Y);
-                view.canvasContext.stroke();
+            drawLine: function (drawing) {
+                view.drawSimpleLine(view.canvasContext, drawing);
             },
         });
     },
@@ -34,23 +29,29 @@
             'mousemove #canvas': 'performMouseMove'
         },
     
-    // ToDo: Should be used
-    drawSimpleLine: function (context, drawingModel) {
+    drawSimpleLine: function (context, drawingModel, func) {
+        if (!drawingModel.FromPoint)
+            return;
+
         context.beginPath();
-        context.lineWidth = drawingModel.lineWidth;
-        context.lineJoin = drawingModel.lineJoin;
+        context.lineWidth = drawingModel.LineWidth;
+        context.lineJoin = drawingModel.LineJoin;
         context.moveTo(drawingModel.FromPoint.X, drawingModel.FromPoint.Y);
         context.lineTo(drawingModel.ToPoint.X, drawingModel.ToPoint.Y);
         context.stroke();
+        
+        if (func) {
+            func();
+        }
     },
     
     beginDrawing: function (e) {
         var view = this;
         view.mouseIsPressed = true;
-        view.currentModel.set({
-            oldPositionX: e.clientX - view.canvas.offsetLeft,
-            oldPositionY: e.clientY - view.canvas.offsetTop - 10
-        });
+        view.currentModel.changeFromPoint(
+            e.clientX - view.canvas.offsetLeft,
+            e.clientY - view.canvas.offsetTop - 10
+        );
     },
     
     endDrawing: function () {
@@ -61,34 +62,17 @@
     performMouseMove: function(e) {
         var view = this;
         if (view.mouseIsPressed) {
-            var oldX = view.currentModel.get('oldPositionX'),
-                oldY = view.currentModel.get('oldPositionY'),
-                newX = e.clientX - view.canvas.offsetLeft,
-                newY = e.clientY - view.canvas.offsetTop - 10;
+            view.currentModel.changeToPoint(
+                e.clientX - view.canvas.offsetLeft,
+                e.clientY - view.canvas.offsetTop - 10);
 
-            view.currentModel.set({
-                newPositionX: newX,
-                newPositionY: newY
+            this.drawSimpleLine(view.canvasContext, view.currentModel.get('drawingLineModel'), function () {                
+                view.connection.server.drawLine(view.currentModel.get('drawingLineModel'));
             });
-        
-            if (oldX && oldY) {
-                view.canvasContext.beginPath();
-                view.canvasContext.lineWidth = 4;
-                view.canvasContext.lineJoin = 'round';
-                view.canvasContext.moveTo(oldX, oldY);
-                view.canvasContext.lineTo(newX, newY);
-                view.canvasContext.stroke();
-
-                view.connection.server.drawLine(
-                    oldX, oldY,
-                    newX, newY
-                );
-
-                view.currentModel.set({
-                    oldPositionX: newX,
-                    oldPositionY: newY
-                });
-            }
+            
+            view.currentModel.changeFromPoint(
+                view.currentModel.get('drawingLineModel').ToPoint.X,
+                view.currentModel.get('drawingLineModel').ToPoint.Y);
         }
     }
 });
