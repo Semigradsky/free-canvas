@@ -2,8 +2,6 @@
 
 namespace GlobalCanvas.Infrastructure
 {
-    using System.Drawing;
-
     [HubName("canvas")]
     public class CanvasHub : Hub
     {
@@ -16,15 +14,8 @@ namespace GlobalCanvas.Infrastructure
             _canvas = canvas;
         }
 
-        public void DrawLine(double fromXPoint, double fromYPoint, double toXPoint, double toYPoint)
+        public void DrawLine(Drawing drawing)
         {
-            //var drawing = new Drawing
-            //    { FromXPoint = fromXPoint, FromYPoint = fromYPoint, ToXPoint = toXPoint, ToYPoint = toYPoint };
-            var drawing = new Drawing
-                {
-                    FromPoint = new Point { X = fromXPoint, Y = fromYPoint },
-                    ToPoint = new Point { X = toXPoint, Y = toYPoint }
-                };
             _canvas.DrawLine(drawing);
         }
     }
