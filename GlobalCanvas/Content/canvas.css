@@ -29,7 +29,12 @@
         width: 40px;
         height: 40px;
         margin: 2px;
+        cursor: pointer;
     }
+        #palette li.active {
+            border: 2px solid black;
+            margin: 1px;
+        }
 
 
 /**************   Toolbars  ***************/
@@ -60,6 +65,7 @@
     max-width: 86px;
     height: 40px;
     border: 1px solid black;
+    cursor: pointer;
 }
 
 canvas {

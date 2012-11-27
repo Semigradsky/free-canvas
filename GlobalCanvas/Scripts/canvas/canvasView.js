@@ -36,13 +36,12 @@
         context.beginPath();
         context.lineWidth = drawingModel.LineWidth;
         context.lineJoin = drawingModel.LineJoin;
+        context.strokeStyle = drawingModel.LineColor;
         context.moveTo(drawingModel.FromPoint.X, drawingModel.FromPoint.Y);
         context.lineTo(drawingModel.ToPoint.X, drawingModel.ToPoint.Y);
         context.stroke();
         
-        if (func) {
-            func();
-        }
+        if (func) func();
     },
     
     beginDrawing: function (e) {
@@ -74,5 +73,10 @@
                 view.currentModel.get('drawingLineModel').ToPoint.X,
                 view.currentModel.get('drawingLineModel').ToPoint.Y);
         }
+    },
+    
+    changeColor: function (color) {
+        var view = this;
+        view.currentModel.changeColor(color);
     }
 });

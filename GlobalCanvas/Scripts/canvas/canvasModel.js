@@ -10,7 +10,8 @@
                 Y: 0
             },
             LineWidth: 4,
-            LineJoin: 'round'
+            LineJoin: 'round',
+            LineColor: '#123456'
         },
     },
     
@@ -32,6 +33,15 @@
             X: x,
             Y: y
         };
+
+        this.set({
+            drawingLineModel: newModel
+        });
+    },
+    
+    changeColor: function (newColor) {
+        var newModel = this.get('drawingLineModel');
+        newModel.LineColor = newColor;
 
         this.set({
             drawingLineModel: newModel

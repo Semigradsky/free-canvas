@@ -1,15 +1,27 @@
 ﻿$(function () {
-    $('#current-color').colorpicker({
+    var view = new CanvasView(),
+        currentColor = $('#current-color');
+
+    // Initialize color picker
+    currentColor.colorpicker({
         hsv: false,
         rgb: false,
         select: function (event, color) {
-            $('#current-color').css('background-color', '#' + color.formatted);
-            $('#current-color').css('color', '#' + color.formatted);
+            currentColor.css('background-color', '#' + color.formatted);
+            currentColor.css('color', '#' + color.formatted);
         },
         close: function (event, color) {
-            // ToDo: changed color
+            $('#palette li').removeClass('active');
+            view.changeColor('#' + color.formatted);
         }
     });
-    
-    var view = new CanvasView();
+
+    $('#palette li').on('click', function () {
+        $('#palette li').removeClass('active');
+        $(this).addClass('active');
+        
+        var color = $(this).css('background-color');
+        view.changeColor(color);
+        currentColor.colorpicker("setColor", color);
+    });
 });
