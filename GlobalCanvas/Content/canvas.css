@@ -51,14 +51,11 @@
     margin-left: 5px;
     overflow: hidden;
 }
-
-
-
-
-.drawing-room {
-    margin-top: 10px;
+.horizontal-toolbar {
+    height: 46px;
 }
 
+/* color picker */
 #current-color {
     margin: 2px;
     padding: 0;
@@ -66,6 +63,28 @@
     height: 40px;
     border: 1px solid black;
     cursor: pointer;
+}
+
+/* line thickness picker */
+#line-thickness-view {
+    float: left;
+    width: 40px;
+    height: 40px;
+    border: 1px solid black;
+    margin: 2px;
+}
+    #line-thickness-view .circle {
+        background-color: black;
+    }
+#line-thickness-picker {
+    height: 46px;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+}
+
+.drawing-room {
+    margin-top: 10px;
 }
 
 canvas {

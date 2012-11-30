@@ -78,5 +78,10 @@
     changeColor: function (color) {
         var view = this;
         view.currentModel.changeColor(color);
+    },
+    
+    changeThickness: function (thickness) {
+        var view = this;
+        view.currentModel.changeThickness(thickness);
     }
 });

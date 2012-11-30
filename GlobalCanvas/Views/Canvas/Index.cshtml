@@ -5,8 +5,15 @@
 <h2>Canvas</h2>
 <div class="drawing-room">
     
+    <div class="horizontal-toolbar">
+        <div id="line-thickness-view">
+            <div class="circle"></div>
+        </div>
+        <input id="line-thickness-picker" type="range" min="1" max="40" />
+    </div>
+
     <div class="vertical-left-toolbar">
-        <input id="current-color" type="color"/>
+        <input id="current-color" type="text"/>
         <ul id="palette">
             <li class="palette-black"></li>
             <li class="palette-white"></li>
