@@ -38,6 +38,15 @@
             drawingLineModel: newModel
         });
     },
+
+    changeThickness: function (newThickness) {
+        var newModel = this.get('drawingLineModel');
+        newModel.LineWidth = newThickness;
+
+        this.set({
+            drawingLineModel: newModel
+        });
+    },
     
     changeColor: function (newColor) {
         var newModel = this.get('drawingLineModel');
