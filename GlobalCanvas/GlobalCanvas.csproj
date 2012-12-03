@@ -249,6 +249,10 @@
     <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\canvas\canvasModel.js" />
     <Content Include="Scripts\canvas\canvasView.js" />
+    <Content Include="Scripts\canvas\colorPickerModel.js" />
+    <Content Include="Scripts\canvas\colorPickerView.js" />
+    <Content Include="Scripts\canvas\lineThicknessModel.js" />
+    <Content Include="Scripts\canvas\lineThicknessView.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
