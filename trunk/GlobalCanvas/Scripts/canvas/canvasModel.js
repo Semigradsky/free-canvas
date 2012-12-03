@@ -56,11 +56,4 @@
             drawingLineModel: newModel
         });
     }
-
-   //parse: function (response) {
-   //    var attrs = {};
-   //    attrs.fromPoint = response.FromPoint;
-   //    attrs.toPoint = response.ToPoint;
-   //    return attrs;
-   //}
 });
