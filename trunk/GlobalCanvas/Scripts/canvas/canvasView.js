@@ -29,7 +29,7 @@
             'mousemove #canvas': 'performMouseMove'
         },
     
-    drawSimpleLine: function (context, drawingModel, func) {
+    drawSimpleLine: function (context, drawingModel) {
         if (!drawingModel.FromPoint)
             return;
 
@@ -40,8 +40,6 @@
         context.moveTo(drawingModel.FromPoint.X, drawingModel.FromPoint.Y);
         context.lineTo(drawingModel.ToPoint.X, drawingModel.ToPoint.Y);
         context.stroke();
-        
-        if (func) func();
     },
     
     beginDrawing: function (e) {
@@ -65,9 +63,7 @@
                 e.clientX - view.canvas.offsetLeft,
                 e.clientY - view.canvas.offsetTop - 10);
 
-            this.drawSimpleLine(view.canvasContext, view.currentModel.get('drawingLineModel'), function () {                
-                view.connection.server.drawLine(view.currentModel.get('drawingLineModel'));
-            });
+            view.connection.server.drawLine(view.currentModel.get('drawingLineModel'));
             
             view.currentModel.changeFromPoint(
                 view.currentModel.get('drawingLineModel').ToPoint.X,

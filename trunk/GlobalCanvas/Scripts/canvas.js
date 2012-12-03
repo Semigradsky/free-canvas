@@ -43,24 +43,28 @@ var LineThicknessPicker = function() {
         lineThicknessCircle = $('#line-thickness-view .circle');
 
     var initializeThicknessPicker = function () {
-        if (!Modernizr.inputtypes.range) {
-            alert('go away! switch to chrome');
-            //lineThicknessPicker.slider();
-        } else {
-            lineThicknessPicker.on('change', function () {
-                var lineThickness = lineThicknessPicker.val();
-                setThickness(lineThickness);
-            });
-        }
+        lineThicknessPicker.slider({
+            min: 1,
+            max: 40,
+            value: 10,
+            slide: function (event, ui) {
+                changeLineThicknessView(ui.value);
+                view.changeThickness(ui.value);
+            }
+        });
     };
 
-    var setThickness = function(thickness) {
-        lineThicknessPicker.val(thickness);
+    var changeLineThicknessView = function(thickness) {
         lineThicknessCircle.css('margin-top', 20 - thickness / 2);
         lineThicknessCircle.css('margin-left', 20 - thickness / 2);
         lineThicknessCircle.css('width', thickness);
         lineThicknessCircle.css('height', thickness);
         lineThicknessCircle.css('border-radius', thickness / 2);
+    };
+
+    var setThickness = function(thickness) {
+        lineThicknessPicker.slider('value', thickness);
+        changeLineThicknessView(thickness);
         view.changeThickness(thickness);
     };
 
