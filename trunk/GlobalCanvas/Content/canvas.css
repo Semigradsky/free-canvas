@@ -91,6 +91,7 @@ canvas {
     background: none repeat scroll 0 0 #fff;
     border: 1px solid black;
     float: left;
+    cursor: url("../Images/pencil.gif"), auto;
 }
 
 .ui-colorpicker  {
