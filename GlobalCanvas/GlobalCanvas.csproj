@@ -245,6 +245,7 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\designer.png" />
+    <Content Include="Images\pencil.gif" />
     <Content Include="Scripts\backbone.js" />
     <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\canvas\canvasModel.js" />

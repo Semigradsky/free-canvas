@@ -9,17 +9,17 @@
                 X: 0,
                 Y: 0
             },
-            LineWidth: 4,
-            LineJoin: 'round',
-            LineColor: '#123456'
+            LineWidth: {},
+            LineType: 'circle',
+            LineColor: {}
         },
     },
     
-    changeToPoint: function (x, y) {
+    changeToPoint: function (point) {
         var newModel = this.get('drawingLineModel');
         newModel.ToPoint = {
-            X: x,
-            Y: y
+            X: point.X,
+            Y: point.Y
         };
 
         this.set({
@@ -27,11 +27,11 @@
         });
     },
     
-    changeFromPoint: function (x, y) {
+    changeFromPoint: function (point) {
         var newModel = this.get('drawingLineModel');
         newModel.FromPoint = {
-            X: x,
-            Y: y
+            X: point.X,
+            Y: point.Y
         };
 
         this.set({
