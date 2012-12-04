@@ -21,11 +21,13 @@
 
         // Initialize thickness picker
         this.thicknessSlider = new LineThicknessView({});
+        this.thicknessSlider.render();
         this.thicknessSlider.lineThicknessModel.bind('change', this.changeThickness);
         this.thicknessSlider.setThickness(view.defaultValues.lineThickness);
 
         // Initialize color picker
         this.colorPicker = new ColorPickerView({});
+        this.colorPicker.render();
         this.colorPicker.colorModel.bind('change', this.changeColor);
         this.colorPicker.colorModel.bind('change', this.thicknessSlider.changeColor);
         this.colorPicker.setColor(view.defaultValues.color);
