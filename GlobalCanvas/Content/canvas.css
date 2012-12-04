@@ -1,29 +1,12 @@
 ﻿/**************   Palette  ***************/
 /*****************************************/
-.palette-black { background-color: #000; }
-.palette-white { background-color: #fff; }
-.palette-gray { background-color: #808080; }
-.palette-silver { background-color: #C0C0C0; }
-.palette-navy { background-color: #000080; }
-.palette-blue { background-color: #0000FF; }
-.palette-teal { background-color: #008080; }
-.palette-aqua { background-color: #00FFFF; }
-.palette-green { background-color: #008000; }
-.palette-lime { background-color: #00FF00; }
-.palette-olive { background-color: #808000;}
-.palette-yellow { background-color: #FFFF00; }
-.palette-purple { background-color: #800080; }
-.palette-fuchsia { background-color: #FF00FF; }
-.palette-maroon { background-color: #800000; }
-.palette-red { background-color: #FF0000; }
-
-#palette {
+.palette {
     padding: 0;
     margin: 0;
     list-style: none;
     margin-top: 5px;
 }
-    #palette li {
+    .palette li {
         float: left;
         border: 1px solid black;
         width: 40px;
@@ -31,10 +14,18 @@
         margin: 2px;
         cursor: pointer;
     }
-        #palette li.active {
+        .palette li.active {
             border: 2px solid black;
             margin: 1px;
         }
+.current-color {
+    margin: 2px;
+    padding: 0;
+    max-width: 86px;
+    height: 40px;
+    border: 1px solid black;
+    cursor: pointer;
+}
 
 
 /**************   Toolbars  ***************/
@@ -53,16 +44,6 @@
 }
 .horizontal-toolbar {
     height: 46px;
-}
-
-/* color picker */
-#current-color {
-    margin: 2px;
-    padding: 0;
-    max-width: 86px;
-    height: 40px;
-    border: 1px solid black;
-    cursor: pointer;
 }
 
 /* line thickness picker */
