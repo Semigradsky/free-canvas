@@ -1,26 +1,24 @@
 ﻿var LineThicknessView = Backbone.View.extend({
-    el: $('.horizontal-toolbar'),
-    slider: $('#line-thickness-picker'),
-    circle: $('#line-thickness-view .circle'),
-    lineThicknessModel: new LineThicknessModel(),
+    slider: [],
+    circle: [],
 
     initialize: function() {
         var view = this;
         $(view.el).off();
         _.bindAll(view);
-        this.lineThicknessModel.view = this;
-        this.lineThicknessModel.bind('change', this.update);
+        this.model.view = this;
+        this.model.bind('change', this.update);
     },
     
     setThickness: function (thickness) {
         var view = this;
         $(view.slider).slider('value', thickness);
-        view.lineThicknessModel.set({ LineThickness: thickness });
+        view.model.set({ LineThickness: thickness });
     },
     
     update: function () {
         var view = this;
-        var thickness = view.lineThicknessModel.get('LineThickness');
+        var thickness = view.model.get('LineThickness');
         $(view.circle).css('margin-top', 20 - thickness / 2);
         $(view.circle).css('margin-left', 20 - thickness / 2);
         $(view.circle).css('width', thickness);
@@ -36,6 +34,16 @@
     
     render: function () {
         var view = this;
+        
+        // added thickness view
+        $(view.el).append('<div class="line-thickness-view"><div class="circle"></div></div>');
+        view.circle = $(view.el).find('.circle');
+        
+        // added slider
+        $(view.el).append('<div class="thickness-picker"></div>');
+        view.slider = $(view.el).find('.thickness-picker');
+
+        // init slider
         $(view.slider).slider({
             min: 1,
             max: 40,

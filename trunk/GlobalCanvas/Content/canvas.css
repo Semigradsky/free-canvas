@@ -47,17 +47,14 @@
 }
 
 /* line thickness picker */
-#line-thickness-view {
+.line-thickness-view {
     float: left;
     width: 40px;
     height: 40px;
     border: 1px solid black;
     margin: 2px;
 }
-    #line-thickness-view .circle {
-        background-color: black;
-    }
-#line-thickness-picker {
+.thickness-picker {
     float: left;
     width: 200px;
     margin: 15px 10px;
