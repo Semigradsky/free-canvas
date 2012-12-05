@@ -1,8 +1,6 @@
 ﻿var ColorPickerView = Backbone.View.extend({
-    el: $('.color-picker'),
-    picker: {},
-    pickerView: {},
-    colorModel: new ColorPickerModel(),
+    picker: [],
+    pickerView: [],
     defaultColors: [
         'black', 'white',
         'gray', 'silver',
@@ -18,8 +16,8 @@
         var view = this;
         $(view.el).off();
         _.bindAll(view);
-        this.colorModel.view = this;
-        this.colorModel.bind('change', this.update);
+        this.model.view = this;
+        this.model.bind('change', this.update);
     },
     
     events: {
@@ -40,7 +38,7 @@
 
     update: function () {
         var view = this;
-        var color = view.colorModel.get('Color');
+        var color = view.model.get('Color');
         $(view.picker).css('background-color', color);
         $(view.picker).css('color', color);
         console.log('ColorPicker update: ' + color);
@@ -65,13 +63,13 @@
             hsv: false,
             rgb: false,
             select: function (event, color) {
-                view.colorModel.set({
+                view.model.set({
                     Color: '#' + color.formatted
                 });
             },
             close: function (event, color) {
                 $('.palette li').removeClass('active');
-                view.colorModel.set({
+                view.model.set({
                     Color: '#' + color.formatted
                 });
             }

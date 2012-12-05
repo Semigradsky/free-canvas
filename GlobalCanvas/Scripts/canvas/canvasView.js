@@ -3,7 +3,7 @@
     canvas: document.getElementById('canvas'),
     canvasContext: null,
     mouseIsPressed: false,
-    currentModel: new CanvasModel(),
+    model: new CanvasModel(),
     colorPicker: null,
     thicknessSlider: null,
     connection: $.connection.canvas,
@@ -16,20 +16,22 @@
         var view = this;
         $(view.el).off();
         _.bindAll(view);
-        this.currentModel.view = this;
+        this.model.view = this;
         view.canvasContext = view.canvas.getContext('2d');
 
         // Initialize thickness picker
-        this.thicknessSlider = new LineThicknessView({});
+        var lineThicknessModel = new LineThicknessModel();
+        this.thicknessSlider = new LineThicknessView({ el: $('.line-tickness-picker'), model: lineThicknessModel });
         this.thicknessSlider.render();
-        this.thicknessSlider.lineThicknessModel.bind('change', this.changeThickness);
+        this.thicknessSlider.model.bind('change', this.changeThickness);
         this.thicknessSlider.setThickness(view.defaultValues.lineThickness);
 
         // Initialize color picker
-        this.colorPicker = new ColorPickerView({});
+        var colorPickerModel = new ColorPickerModel();
+        this.colorPicker = new ColorPickerView({ el: $('.color-picker'), model: colorPickerModel });
         this.colorPicker.render();
-        this.colorPicker.colorModel.bind('change', this.changeColor);
-        this.colorPicker.colorModel.bind('change', this.thicknessSlider.changeColor);
+        this.colorPicker.model.bind('change', this.changeColor);
+        this.colorPicker.model.bind('change', this.thicknessSlider.changeColor);
         this.colorPicker.setColor(view.defaultValues.color);
         
         // Initialize SignalR
@@ -85,7 +87,7 @@
     beginDrawing: function (e) {
         var view = this;
         view.mouseIsPressed = true;
-        view.currentModel.changeFromPoint(view.getMousePos(e));
+        view.model.changeFromPoint(view.getMousePos(e));
     },
     
     endDrawing: function () {
@@ -96,9 +98,9 @@
     performMouseMove: function(e) {
         var view = this;
         if (view.mouseIsPressed) {
-            view.currentModel.changeToPoint(view.getMousePos(e));
-            view.connection.server.drawLine(view.currentModel.get('drawingLineModel'));
-            view.currentModel.changeFromPoint(view.currentModel.get('drawingLineModel').ToPoint);
+            view.model.changeToPoint(view.getMousePos(e));
+            view.connection.server.drawLine(view.model.get('drawingLineModel'));
+            view.model.changeFromPoint(view.model.get('drawingLineModel').ToPoint);
         }
     },
     
@@ -113,13 +115,13 @@
 
     changeColor: function () {
         var view = this;
-        view.currentModel.changeColor(view.colorPicker.colorModel.get('Color'));
+        view.model.changeColor(view.colorPicker.model.get('Color'));
     },
     
     changeThickness: function () {
         var view = this;
-        view.currentModel.changeThickness(
-            view.thicknessSlider.lineThicknessModel.get('LineThickness')
+        view.model.changeThickness(
+            view.thicknessSlider.model.get('LineThickness')
         );
     }
 });
