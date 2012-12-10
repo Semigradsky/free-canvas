@@ -1,59 +1,67 @@
-﻿var CanvasModel = Backbone.Model.extend({
-    defaults: {
-        drawingLineModel: {
-            FromPoint: {
-                X: 0,
-                Y: 0
-            },
-            ToPoint: {
-                X: 0,
-                Y: 0
-            },
-            LineWidth: {},
-            LineType: 'circle',
-            LineColor: {}
-        },
-    },
-    
-    changeToPoint: function (point) {
-        var newModel = this.get('drawingLineModel');
-        newModel.ToPoint = {
-            X: point.X,
-            Y: point.Y
-        };
+(function() {
+  var __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-        this.set({
-            drawingLineModel: newModel
-        });
-    },
-    
-    changeFromPoint: function (point) {
-        var newModel = this.get('drawingLineModel');
-        newModel.FromPoint = {
-            X: point.X,
-            Y: point.Y
-        };
+  this.CanvasModel = (function(_super) {
 
-        this.set({
-            drawingLineModel: newModel
-        });
-    },
+    __extends(CanvasModel, _super);
 
-    changeThickness: function (newThickness) {
-        var newModel = this.get('drawingLineModel');
-        newModel.LineWidth = newThickness;
-
-        this.set({
-            drawingLineModel: newModel
-        });
-    },
-    
-    changeColor: function (newColor) {
-        var newModel = this.get('drawingLineModel');
-        newModel.LineColor = newColor;
-
-        this.set({
-            drawingLineModel: newModel
-        });
+    function CanvasModel() {
+      return CanvasModel.__super__.constructor.apply(this, arguments);
     }
-});
+
+    CanvasModel.prototype.defaults = {
+      drawingLineModel: {
+        FromPoint: {
+          X: 0,
+          Y: 0
+        },
+        ToPoint: {
+          X: 0,
+          Y: 0
+        },
+        LineWidth: 0,
+        LineType: 'circle',
+        LineColor: ''
+      }
+    };
+
+    CanvasModel.prototype.changeToPoint = function(point) {
+      var newModel;
+      newModel = this.get('drawingLineModel');
+      newModel.ToPoint = {
+        X: point.X,
+        Y: point.Y
+      };
+      return this.set('drawingLineModel', newModel);
+    };
+
+    CanvasModel.prototype.changeFromPoint = function(point) {
+      var newModel;
+      newModel = this.get('drawingLineModel');
+      newModel.FromPoint = {
+        X: point.X,
+        Y: point.Y
+      };
+      return this.set('drawingLineModel', newModel);
+    };
+
+    CanvasModel.prototype.changeThickness = function(newThickness) {
+      var newModel;
+      newModel = this.get('drawingLineModel');
+      newModel.LineWidth = newThickness;
+      return this.set('drawingLineModel', newModel);
+    };
+
+    CanvasModel.prototype.changeColor = function(newColor) {
+      var newModel;
+      newModel = this.get('drawingLineModel');
+      newModel.LineColor = newColor;
+      return this.set('drawingLineModel', newModel);
+    };
+
+    return CanvasModel;
+
+  })(Backbone.Model);
+
+}).call(this);
