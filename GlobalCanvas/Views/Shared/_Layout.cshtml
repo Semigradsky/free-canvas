@@ -57,16 +57,10 @@
         @Scripts.Render("~/scripts/underscore.js")
         @Scripts.Render("~/scripts/backbone.js")
         
-        @Scripts.Render("~/scripts/canvas/colorPickerModel.js")
-        @Scripts.Render("~/scripts/canvas/colorPickerView.js")
-        @Scripts.Render("~/scripts/canvas/lineThicknessModel.js")
-        @Scripts.Render("~/scripts/canvas/lineThicknessView.js")
+        @Scripts.Render("~/bundles/colorPicker")
+        @Scripts.Render("~/bundles/lineThicknessPicker")
+        @Scripts.Render("~/bundles/canvas")
 
-        @Scripts.Render("~/scripts/canvas/canvasModel.js")
-        @Scripts.Render("~/scripts/canvas/canvasView.js")
-       
-     
-        
         @Scripts.Render("~/scripts/canvas.js")
 
         @RenderSection("scripts", required: false)

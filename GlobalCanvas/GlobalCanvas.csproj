@@ -243,17 +243,27 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\canvas\canvasModel.coffee" />
+    <Content Include="Scripts\canvas\canvasView.coffee" />
+    <Content Include="Scripts\colorPicker\colorPickerModel.coffee" />
+    <Content Include="Scripts\colorPicker\colorPickerView.coffee" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\designer.png" />
     <Content Include="Images\pencil.gif" />
     <Content Include="Scripts\backbone.js" />
     <Content Include="Scripts\canvas.js" />
-    <Content Include="Scripts\canvas\canvasModel.js" />
-    <Content Include="Scripts\canvas\canvasView.js" />
-    <Content Include="Scripts\canvas\colorPickerModel.js" />
-    <Content Include="Scripts\canvas\colorPickerView.js" />
-    <Content Include="Scripts\canvas\lineThicknessModel.js" />
-    <Content Include="Scripts\canvas\lineThicknessView.js" />
+    <Content Include="Scripts\canvas\canvasModel.js">
+      <DependentUpon>canvasModel.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\canvas\canvasView.js">
+      <DependentUpon>canvasView.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\colorPicker\colorPickerModel.js">
+      <DependentUpon>colorPickerModel.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\colorPicker\colorPickerView.js">
+      <DependentUpon>colorPickerView.coffee</DependentUpon>
+    </Content>
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -267,6 +277,12 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\lineThicknessPicker\lineThicknessPickerModel.js">
+      <DependentUpon>lineThicknessPickerModel.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\lineThicknessPicker\lineThicknessPickerView.js">
+      <DependentUpon>lineThicknessPickerView.coffee</DependentUpon>
+    </Content>
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Images\bar-alpha.png" />
     <Content Include="Images\bar-opacity.png" />
@@ -321,6 +337,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Canvas\Index.cshtml" />
+    <Content Include="Scripts\lineThicknessPicker\lineThicknessPickerModel.coffee" />
+    <Content Include="Scripts\lineThicknessPicker\lineThicknessPickerView.coffee" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
