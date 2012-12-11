@@ -247,6 +247,11 @@
     <Content Include="Scripts\canvas\canvasView.coffee" />
     <Content Include="Scripts\colorPicker\colorPickerModel.coffee" />
     <Content Include="Scripts\colorPicker\colorPickerView.coffee" />
+    <Content Include="Scripts\colorPicker\palette\paletteModel.coffee" />
+    <Content Include="Scripts\colorPicker\palette\paletteModel.js">
+      <DependentUpon>paletteModel.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\colorPicker\palette\paletteView.coffee" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\designer.png" />
     <Content Include="Images\pencil.gif" />
@@ -263,6 +268,9 @@
     </Content>
     <Content Include="Scripts\colorPicker\colorPickerView.js">
       <DependentUpon>colorPickerView.coffee</DependentUpon>
+    </Content>
+    <Content Include="Scripts\colorPicker\palette\paletteView.js">
+      <DependentUpon>paletteView.coffee</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />

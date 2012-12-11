@@ -11,7 +11,7 @@
     }
 
     ColorPickerModel.prototype.defaults = {
-      Color: {}
+      Color: ''
     };
 
     return ColorPickerModel;
