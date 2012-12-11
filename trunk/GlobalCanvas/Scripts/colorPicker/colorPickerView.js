@@ -10,55 +10,36 @@
       return ColorPickerView.__super__.constructor.apply(this, arguments);
     }
 
-    ColorPickerView.prototype.picker = [];
+    ColorPickerView.prototype.$picker = null;
 
-    ColorPickerView.prototype.pickerView = [];
+    ColorPickerView.prototype.$inputPicker = null;
 
-    ColorPickerView.prototype.defaultColors = ['black', 'white', 'gray', 'silver', 'navy', 'blue', 'teal', 'aqua', 'green', 'lime', 'olive', 'yellow', 'purple', 'fuchsia', 'maroon', 'red'];
+    ColorPickerView.prototype.pickerView = null;
 
     ColorPickerView.prototype.initialize = function() {
-      $(this.el).off();
+      this.$el.off();
       _.bindAll(this);
       this.model.view = this;
       return this.model.bind('change', this.update);
     };
 
-    ColorPickerView.prototype.events = {
-      'click .palette li': 'pickColor'
-    };
-
-    ColorPickerView.prototype.pickColor = function(e) {
-      var activeColor, color;
-      $('.palette li').removeClass('active');
-      activeColor = $(e.currentTarget);
-      $(activeColor).addClass('active');
-      color = $(activeColor).css('background-color');
-      return $(this.picker).colorpicker('setColor', color);
-    };
-
     ColorPickerView.prototype.setColor = function(color) {
-      return $(this.picker).colorpicker('setColor', color);
+      return this.$inputPicker.colorpicker('setColor', color);
     };
 
     ColorPickerView.prototype.update = function() {
       var color;
       color = this.model.get('Color');
-      $(this.picker).css('background-color', color);
-      $(this.picker).css('color', color);
+      this.$picker.css('background-color', color);
+      this.$picker.css('color', color);
       return console.log('ColorPicker update: ' + color);
     };
 
     ColorPickerView.prototype.render = function() {
-      var palette,
-        _this = this;
-      $(this.el).append('<input type=text class="current-color"></input>');
-      this.picker = $('.current-color');
-      $(this.el).append('<ul class="palette"></ul>');
-      palette = $(this.el).find('ul.palette');
-      _.each(this.defaultColors, function(color) {
-        return palette.append('<li style="background-color:' + color + '"></li>');
-      });
-      return $(this.picker).colorpicker({
+      var _this = this;
+      this.$el.append('<input type=text style="height: 0; width: 0; margin: 0; padding: 0; border: none; float: left"></input>');
+      this.$inputPicker = this.$el.find('input');
+      this.$inputPicker.colorpicker({
         hsv: false,
         rgb: false,
         select: function(event, color) {
@@ -72,6 +53,19 @@
             Color: '#' + color.formatted
           });
         }
+      });
+      this.$el.append('<div class="current-color"></div');
+      this.$picker = this.$el.find('div.current-color');
+      this.$picker.on('click', function() {
+        return _this.$inputPicker.colorpicker('open');
+      });
+      this.$el.append('<ul class="palette"></ul>');
+      this.palette = new PaletteView({
+        el: this.$el.find('ul.palette')
+      });
+      this.palette.render();
+      return this.palette.model.bind('change:activeColor', function(paletteModel) {
+        return _this.setColor(paletteModel.get('activeColor'));
       });
     };
 

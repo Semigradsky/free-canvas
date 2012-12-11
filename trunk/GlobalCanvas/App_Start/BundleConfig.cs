@@ -24,7 +24,9 @@ namespace GlobalCanvas
 
             bundles.Add(new ScriptBundle("~/bundles/colorPicker").Include(
                         "~/Scripts/colorPicker/colorPickerModel.js",
-                        "~/Scripts/colorPicker/colorPickerView.js"));
+                        "~/Scripts/colorPicker/colorPickerView.js",
+                        "~/Scripts/colorPicker/palette/paletteModel.js",
+                        "~/Scripts/colorPicker/palette/paletteView.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/lineThicknessPicker").Include(
                         "~/Scripts/lineThicknessPicker/lineThicknessPickerModel.js",
